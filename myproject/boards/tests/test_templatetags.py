@@ -3,6 +3,7 @@ from django.test import TestCase
 
 from ..templatetags.form_tags import field_type, input_class
 
+
 class ExampleForm(forms.Form):
     name = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput())
@@ -17,9 +18,10 @@ class FieldTypeTests(TestCase):
         self.assertEquals('TextInput', field_type(form['name']))
         self.assertEquals('PasswordInput', field_type(form['password']))
 
+
 class InputClassTests(TestCase):
     def test_unbound_field_initial_state(self):
-        form = ExampleForm()
+        form = ExampleForm()  # unbound form
         self.assertEquals('form-control ', input_class(form['name']))
 
     def test_valid_bound_field(self):
