@@ -1,4 +1,4 @@
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
@@ -14,7 +14,7 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            auth_login(request, user)
+            login(request, user)
             return redirect('home')
     else:
         form = SignUpForm()
